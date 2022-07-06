@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>At-Home Services | Register</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="shortcut icon" type="image/png" href="/images/Logo.png">
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+	<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+
+	<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+</head>
+<body>
+
+	<!-- Navigation Bar -->
+	<header>
+		<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+		  <a class="navbar-brand" href="#">At-Home Services</a>
+		  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		  </button>
+		  <div class="collapse navbar-collapse" id="navbarCollapse">
+			<ul class="navbar-nav mr-auto">
+			  <li class="nav-item active">
+				<a class="nav-link" href="#">Home</a>
+			  </li>
+			  <li class="nav-item">
+				<a class="nav-link" href="services1.html">Services</a>
+			  </li>
+			  <li class="nav-item">
+				<a class="nav-link" href="contact1.html">Contact</a>
+			  </li>
+			  <li class="nav-item">
+				<a class="nav-link" href="about1.html">About Us</a>
+			  </li>
+			</ul>
+		  </div>
+		</nav>
+	  </header>
+		<!-- End of Navigation Bar-->
+
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-lg-6 col-md-6 form-container mt-3" data-aos="flip-left">
+				<div class="col-lg-9 col-xs-12 mb-3 form-box text-center">
+					<div class="logo mt-5 mb-3">
+						<img src="image/logocon.png" width="100px">
+					</div>
+					<div class="heading mb-3">
+						<h5>Create an account</h5>
+					</div>
+						<div class="form-input">
+							<span><i class="fa fa-envelope"></i></span>
+							<input type="email" placeholder="email" name="email" id="email"/>
+						</div>
+						<div class="form-input">
+							<span><i class="fa fa-lock"></i></span>
+							<input type="password" placeholder="password" name="pass" id="password" data-toggle="tooltip" title="Password must be at least 6 letters"/>
+						</div>
+						<div class="row mb-3">
+							<div class="col-12 d-flex">
+								<div class="custom-control custom-checkbox">
+									<input type="checkbox" class="custom-control-input" id="cb1">
+									<label class="custom-control-label text-white" for="cb1">I agree all terms & conditions</label>
+								</div>
+							</div>
+						</div>
+						<div class="text-left mb-3">
+							<button onclick="RegisterUser()" type="submit" class="btn">Register</button>
+						</div>
+						<div class="text-white mb-3">or register with</div>
+						<div class="row mb-3">
+							<div class="col-4">
+								<a href="" class="btn btn-block btn-social btn-facebook">
+									<i class="fab fa-facebook"></i>
+									<label>Facebook</label>
+								</a>
+							</div>
+							<div class="col-4">
+								<a href="" class="btn btn-block btn-social btn-google">
+									<i class="fab fa-google"></i>
+									<label>Google</label>
+								</a>
+							</div>
+							<div class="col-4">
+								<a href="" class="btn btn-block btn-social btn-twitter">
+									<i class="fab fa-twitter"></i>
+									<label>Twitter</label>
+								</a>
+							</div>
+						</div>
+						<div class="text-white">Already have an account?
+							<a href="login.html" class="login-link">Login here</a>
+						</div>
+				</div>
+			</div>
+
+			<div class="col-lg-6 col-md-6 d-none d-md-block image-container"></div>
+		</div>
+	</div>
+
+
+	<!--footer starts from here-->
+<footer class="footer">
+	<div class="container bottom_border">
+	<div class="row">
+	<div class=" col-sm-4 col-md col-sm-4  col-12 col">
+	<h5 class="headin5_amrc col_white_amrc pt2">Find us</h5>
+	<!--headin5_amrc-->
+	<p class="mb10">At-Home Services provides resendtial cleaning services</p>
+	<p><i class="fa fa-location-arrow"></i> Tanyag, Taguig City </p>
+	<p><i class="fa fa-phone"></i>  +91-9999878398  </p>
+	<p><i class="fa fa fa-envelope"></i> At-HomeServices@gmail.com  </p>
+	
+	
+	</div>
+	
+	
+	<div class=" col-sm-4 col-md  col-6 col">
+	<h5 class="headin5_amrc col_white_amrc pt2">Quick links</h5>
+	<!--headin5_amrc-->
+	<ul class="footer_ul_amrc">
+	<li><a href="#">Cleaning Services</a></li>
+	<li><a href="#">Why is Cleaning Important?</a></li>
+	<li><a href="#">A clean house is a safe house</a></li>
+	<li><a href="#">Covid 19</a></li>
+	<li><a href="#">Why should we maintain our house clean?</a></li>
+	<li><a href="#">Cleaning Hacks</a></li>
+	</ul>
+	<!--footer_ul_amrc ends here-->
+	</div>	
+	
+	<div class=" col-sm-4 col-md  col-11 col">
+	<h5 class="headin5_amrc col_white_amrc pt2">Follow us</h5>
+	<!--headin5_amrc ends here-->
+	
+	<ul class="footer_ul2_amrc">
+	<li><a href="#"><i class="fab fa-twitter fleft padding-right"></i> </a><p>At-Home Services<a href="#">https://www.lipsum.com/</a></p></li>
+	<li><a href="#"><i class="fab fa-facebook fleft padding-right"></i> </a><p>At-Home Services<a href="#">https://www.lipsum.com/</a></p></li>
+	<li><a href="#"><i class="fab fa-instagram fleft padding-right"></i> </a><p>At-Home Services<a href="#">https://www.lipsum.com/</a></p></li>
+	</ul>
+	<!--footer_ul2_amrc ends here-->
+	</div>
+	</div>
+	</div>
+	
+	
+	<div class="container">
+	<ul class="foote_bottom_ul_amrc">
+	<li><a href="#">Home</a></li>
+	<li><a href="#">Services</a></li>
+	<li><a href="#">Contact</a></li>
+	<li><a href="#">About Us</a></li>
+	</ul>
+	<!--foote_bottom_ul_amrc ends here-->
+	<p class="text-center">Copyright @2021 | Designed With by <a href="#">At-Home Services</a></p>
+	
+	<ul class="social_footer_ul">
+	<li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+	<li><a href="#"><i class="fab fa-twitter"></i></a></li>
+	<li><a href="#"><i class="fab fa-linkedin"></i></a></li>
+	<li><a href="#"><i class="fab fa-instagram"></i></a></li>
+	</ul>
+	<!--social_footer_ul ends here-->
+	</div>
+	
+	</footer>
+
+	<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+      AOS.init();
+    </script>
+
+<script>
+	 // Your web app's Firebase configuration
+	 const firebaseConfig = {
+    apiKey: "AIzaSyD0l14wYowKDd27dVOiD7SYipg4i0tUWCQ",
+    authDomain: "websysathome.firebaseapp.com",
+    projectId: "websysathome",
+    storageBucket: "websysathome.appspot.com",
+    messagingSenderId: "496251542301",
+    appId: "1:496251542301:web:10ac6e3c8cfa9a6ff69ff4"
+  };
+  
+   // Initialize Firebase
+   firebase.initializeApp(firebaseConfig);
+ 
+   function RegisterUser(){
+	   var email=document.getElementById('email').value;
+	   var password=document.getElementById('password').value;
+	   firebase.auth().createUserWithEmailAndPassword(email,password).then(function(){
+		   alert('User ' + email + ' Created Successfully\nProceed to Login');
+
+		   window.location.replace("login.html");
+ 
+	   }).catch(function(error){
+		   var errorcode=error.code;
+		   var errormsg=error.message;
+	   });
+   }
+
+ </script>
+
+<script>
+	$(document).ready(function(){
+	  $('[data-toggle="tooltip"]').tooltip();
+	});
+	</script>
+
+</body>
+</html>

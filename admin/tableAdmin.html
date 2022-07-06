@@ -1,0 +1,328 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="shortcut icon" type="/image/png" href="/images/Logo.png">
+
+  <title>Admin | Bookings</title>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-analytics.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+
+  <!-- Custom styles for this template -->
+  <link href="/style.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- Navigation Bar -->
+  <header>
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+      <a class="navbar-brand" href=#>At-Home Services</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+        aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav mr-auto">
+              <li class="nav-item active">
+                <a class="nav-link" href="tableAdmin.html">Bookings</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="contactAdmin.html">Contact</a>
+              </li>
+        </ul>
+        <button onclick="signOut()" class="btnSignOut my-1">Sign out</button>
+      </div>
+    </nav>
+  </header>
+    <!-- End Navigation Bar -->
+
+    <br>
+  <button id="btnHide">Click to Hide Form</button>
+  <button id="btnShow">Click to Show Form</button>
+  <br>
+
+    <!-- Update Form -->
+
+  <section class="Form my-4 mx-5 mt-2">
+    <div class="container">
+      <div class="row no-gutters">
+        <div class="col-lg-5">
+          <img src="/images/vector-creator (1).png" class="imgForm-fluid" alt="">
+        </div>
+        <div class="col-lg-7 px-5 pt-4 py-6">
+          <h1 class="font-weight-bold py-3 pt-1">Update Service Here</h1>
+
+          <form id="frmData">
+            <div class="form-row">
+              <div class="col-lg-11">
+                <label class="pt-2 font-weight-bold">Full Name</label>
+                <input type="text" placeholder="Enter Full Name" class="form-control p-2" name="fname" id="fname" readonly>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="col-lg-11">
+                <label class="pt-2 font-weight-bold">Address</label>
+                <input type="text" placeholder="Enter Address" class="form-control p-2" name="address" id="address" readonly>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="col-lg-11">
+                <label class="pt-2 font-weight-bold">Contact Number</label>
+                <input type="number" placeholder="Enter Contact Number" class="form-control p-2" name="contact" id="contact" readonly>
+              </div>
+            </div>
+
+            <hr class="solid">
+            <div class="form-row">
+              <div class="col-lg-11">
+                <label class="pt-2 font-weight-bold">Date</label>
+                <input type="date" class="form-control p-2" name="date" id="date" readonly>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="col-lg-11">
+                <label class="pt-2 font-weight-bold">Time</label>
+                <input type="time" class="form-control p-2" name="time" id="time" readonly>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="col-lg-11">
+                <label class="pt-2 font-weight-bold">Service</label>
+                <select class="custom-select" class="form-control item" name="service" id="service" disabled="true">
+                  <option value="">Select Type of Cleaning Service</option>
+                  <option value="Bedroom Cleaning">Bedroom Cleaning</option>
+                  <option value="Bathroom Cleaning">Bathroom Cleaning</option>
+                  <option value="Living Room Cleaning">Living Room Cleaning</option>
+                  <option value="Kitchen Cleaning">Kitchen Cleaning</option>
+                  <option value="Garden Cleaning">Garden Cleaning</option>
+                  <option value="General Cleaning">General Cleaning<option>
+                </select>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="col-lg-11">
+                <label class="pt-2 font-weight-bold">Area of Room</label>
+                <input type="text" onchange="totalPrice()" placeholder="Enter Area of Room (sqm)" class="form-control p-2" name="area" id="area" readonly>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="col-lg-11">
+                <label class="pt-2 font-weight-bold">Pricing</label>
+                <input type="text" placeholder="Price" class="form-control p-2" name="price" id="price" required readonly>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="col-lg-11">
+                <label class="pt-2 font-weight-bold">Mode of Payment</label>
+                <select class="custom-select" class="form-control item" name="mop" id="mop" disabled="true">
+                  <option value="">Select Mode of Payment</option>
+                  <option value="Cash">Cash</option>
+                  <option value="Debit Card">Debit Card</option>
+                  <option value="Credit Card">Credit Card</option>
+                  <option value="Gcash">Gcash<option>
+                </select>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="col-lg-11">
+                <label class="pt-2 font-weight-bold">Status</label>
+                <select class="custom-select" class="form-control item" name="status" id="status" required>
+                  <option value="">Select Status</option>
+                  <option value="Accepted">Accepted</option>
+                  <option value="Denied">Denied</option>
+                </select>
+              </div>
+              <input type="hidden" class="form-control" name="document" id="document" required>
+            </div>
+            
+            <hr class="solid">
+            <div class="form-row">
+              <div class="col-lg-11">
+                <button class="btnform mt-3 mb-5" id="update" type="button" data-toggle="modal" data-target="#myModal"><i class="icon icon-basket"></i>Update Record</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+
+             <!-- The Modal -->
+  <div class="modal" id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Booking Updated Succesfully!</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        
+        <!-- Modal body -->
+        <div class="modal-body">
+          <h5 class="modal-title">See your update at Bookings Table</h5>
+        </div>
+        
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        </div>
+
+</div>
+</section>
+   <!-- End Update Form -->
+
+      <!-- Table -->
+      <br>
+      <h1 class="tblHead">Bookings</h1>  
+        <input type="text" name="search" class="search" id="search" placeholder="Search bookings here"/> 
+        <button id="btnGenerate" onclick="window.location.href='bookingsPDF.html'">Generate as PDF</button>          
+      <div class="table-responsive">
+      <table>
+          <thead>
+              <tr>
+                  <th>Full Name</th>
+                  <th>Address</th>
+                  <th>Contact Number</th>
+                  <th>Date</th>
+                  <th>Time</th> 
+                  <th>Service</th>
+                  <th>Area of Room</th>
+                  <th>Price</th>
+                  <th>Mode of Payment</th>
+                  <th>Status</th>
+                  <th colspan="2">Actions</th>
+                </tr>
+              </thead>
+  
+          <tbody id="tblItems">
+          </tbody>
+      </table>
+  </div>
+
+      <!-- End Table -->
+<br>
+       <!-- FOOTER -->
+       <footer class="container">
+        <p class="float-right"><a href="#">Back to top</a></p>
+        <p>&copy; 2020-2021 At-Home Services &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+      </footer>
+
+<!-- Show and hide form script -->
+  <script>
+    var head1 = $(".Form");
+
+        $(document).ready(function(){
+            $("#btnHide").click(function(){
+                head1.fadeOut(1000);
+            })
+        })
+
+        $(document).ready(function(){
+            $("#btnShow").click(function(){
+                head1.fadeIn(1000);
+            })
+        })
+
+        function totalPrice() {
+  var area = document.getElementById('area');
+  var price = document.getElementById('price');
+  var service = document.getElementById('service');
+  var total;
+
+  if (service.value == "Bedroom Cleaning") {
+    total = area.value * 100;
+    price.value = "P " + total;
+  }
+  else if (service.value == "Bathroom Cleaning") {
+    total = area.value * 200;
+    price.value = "P " + total;
+  }
+  else if (service.value == "Living Room Cleaning") {
+    total = area.value * 300;
+    price.value = "P " + total;
+  }
+  else if (service.value == "Kitchen Cleaning") {
+    total = area.value * 100;
+    price.value = "P " + total;
+  }
+  else if (service.value == "Garden Cleaning") {
+    total = area.value * 200;
+    price.value = "P " + total;
+  }
+  else if (service.value == "General Cleaning") {
+    total = area.value * 400;
+    price.value = "P " + total;
+  }
+   
+}
+
+$(document).ready(function(){
+  $("#search").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#tblItems tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+    </script>
+
+<script>
+   // Your web app's Firebase configuration
+   const firebaseConfig = {
+    apiKey: "AIzaSyD0l14wYowKDd27dVOiD7SYipg4i0tUWCQ",
+    authDomain: "websysathome.firebaseapp.com",
+    projectId: "websysathome",
+    storageBucket: "websysathome.appspot.com",
+    messagingSenderId: "496251542301",
+    appId: "1:496251542301:web:10ac6e3c8cfa9a6ff69ff4"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
+
+  var db=firebase.firestore();
+    db.settings({timestampsInSnapshots:true})
+
+    function signOut(){
+ firebase.auth().signOut().then(() => {
+     alert("User Sign Out");
+
+     window.location.replace("adminLog.html");
+
+   }).catch((error) => {
+     // An error happened.
+   });
+ }
+</script>
+  
+      <script src="tableAdmin.js"></script>
+
+      <!-- Bootstrap core JavaScript
+    ================================================== -->
+      <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+
+
+</body>
+
+</html>

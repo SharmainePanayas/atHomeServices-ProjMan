@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="image/png" href="images/Logo.png">
+    <title>Admin | Contact</title>
+
+     <!-- Bootstrap core CSS -->
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">   
+
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-analytics.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+
+<link rel="stylesheet" href="/style.css">
+
+</head>
+
+<body>
+
+      <!-- Navigation Bar -->
+      <header>
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+          <a class="navbar-brand" href="tableAdmin.html">At-Home Services</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav mr-auto">
+                  <li class="nav-item">
+                    <a class="nav-link" href="tableAdmin.html">Bookings</a>
+                  </li>
+                  <li class="nav-item active">
+                    <a class="nav-link" href="contactAdmin.html">Contact</a>
+                  </li>
+            </ul>
+            <button onclick="signOut()" class="btnSignOut my-1">Sign out</button>
+          </div>
+        </nav>
+      </header>
+        <!-- End of Navigation Bar-->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+
+    <br>
+    <h1 class="tblHead">Contact Us Feedbacks</h1>  
+    <input type="text" name="search" class="search" id="search" placeholder="Search Feedbacks here"/>
+    <button id="btnGenerate" onclick="window.location.href='contactPDF.html'">Generate as PDF</button>    
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Message</th>
+                    <th colspan="1">Action</th>
+                </tr>
+            </thead>
+            
+            <tbody id="tblItems">
+            </tbody>
+        </table>
+      </div>
+
+   
+<br>
+     <!-- FOOTER -->
+     <footer class="container">
+      <p class="float-right"><a href="index.html">Back to Home</a></p>
+      <h5 class="headin5_amrc col_white_amrc pt2">Find us</h5>
+      <p><i class="fa fa-location-arrow"></i> Tanyag, Taguig City </p>
+	    <p><i class="fa fa-phone"></i>  +91-9999878398  </p>
+	    <p><i class="fa fa fa-envelope"></i> At-HomeServices@gmail.com  </p>
+      <p align=center>&copy; 2020-2021 At-Home Services &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+    </footer>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+      AOS.init();
+    </script>
+
+<script>
+    $(document).ready(function(){
+  $("#search").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#tblItems tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+</script>
+
+  <script>
+  // Your web app's Firebase configuration
+  const firebaseConfig = {
+    apiKey: "AIzaSyD0l14wYowKDd27dVOiD7SYipg4i0tUWCQ",
+    authDomain: "websysathome.firebaseapp.com",
+    projectId: "websysathome",
+    storageBucket: "websysathome.appspot.com",
+    messagingSenderId: "496251542301",
+    appId: "1:496251542301:web:10ac6e3c8cfa9a6ff69ff4"
+  };
+
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
+
+  var db=firebase.firestore();
+    db.settings({timestampsInSnapshots:true})
+
+    
+    function signOut(){
+ firebase.auth().signOut().then(() => {
+     alert("User Sign Out");
+
+     window.location.replace("adminLog.html");
+
+   }).catch((error) => {
+     // An error happened.
+   });
+ }
+
+</script>
+
+<script src="contactAdmin.js"></script>
+
+ <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+</body>
+</html>
