@@ -6,8 +6,10 @@ function addRec(doc){
 
     tblItems.append(`<tr id="${doc.id}">    
       <td>${doc.data().fname}</td>
-      <td>${doc.data().address}</td>
+      <td>${doc.data().bnum}</td>
+      <td>${doc.data().rnum}</td>
       <td>${doc.data().contact}</td>  
+      <td>${doc.data().email}</td>  
       <td>${doc.data().date}</td>  
       <td>${doc.data().time}</td>
       <td>${doc.data().service}</td>
@@ -16,8 +18,8 @@ function addRec(doc){
       <td>${doc.data().mop}</td>
       <td>${doc.data().status}</td>
 
-      <td align="center" width="100"><a href="javascript:void(0)" onclick="confirm('Are you sure you want to delete the booking?') || event.stopImmediatePropagation()" class="delete" id="${doc.id}">DELETE</a></td>
-      <td align="center" width="100"><a href="javascript:void(0)" onclick="confirm('Are you sure you want to edit the booking?') || event.stopImmediatePropagation()" class="edit" id="${doc.id}">EDIT</a></td>
+      <td align="center" width="100"><a href="javascript:void(0)" onclick="confirm('Are you sure you want to cancel your booking?') || event.stopImmediatePropagation()" class="delete" id="${doc.id}">DELETE</a></td>
+      <td align="center" width="100"><a href="javascript:void(0)" onclick="confirm('Are you sure you want to edit your booking?') || event.stopImmediatePropagation()" class="edit" id="${doc.id}">EDIT</a></td>
       </tr>`)     
 
        
@@ -25,18 +27,20 @@ function addRec(doc){
         e.stopImmediatePropagation();
         var id=e.target.id;
 
-        db.collection('dbBookings').doc(id).delete();
+        db.collection('dbBookingF').doc(id).delete();
       })
 
       $('.edit').click((e)=>{
         e.stopImmediatePropagation();
         var id=e.target.id;
 
-        db.collection('dbBookings').doc(id).get().then(doc=>{
+        db.collection('dbBookingF').doc(id).get().then(doc=>{
 
             $('#fname').val(doc.data().fname);
-            $('#address').val(doc.data().address);
+            $('#bnum').val(doc.data().bnum);
+            $('#rnum').val(doc.data().rnum);
             $('#contact').val(doc.data().contact);
+            $('#email').val(doc.data().email);
             $('#date').val(doc.data().date);
             $('#time').val(doc.data().time);
             $('#service').val(doc.data().service);
@@ -55,10 +59,12 @@ function addRec(doc){
 $('#update').on('click',()=>{
     var id = $('#document').val();
 
-    db.collection('dbBookings').doc(id).set({
+    db.collection('dbBookingF').doc(id).set({
         fname:$('#fname').val(),
-        address:$('#address').val(),
+        bnum:$('#bnum').val(),
+        rnum:$('#rnum').val(),
         contact:$('#contact').val(),
+        email:$('#email').val(),
         date:$('#date').val(),
         time:$('#time').val(),
         service:$('#service').val(),
@@ -70,25 +76,28 @@ $('#update').on('click',()=>{
 }, {merge:true})
 
 $('#fname').val('');
-$('#address').val('');
+$('#bnum').val('');
+$('#rnum').val('');
 $('#contact').val('');
+$('#email').val('');
 $('#date').val('');
 $('#time').val('');
 $('#service').val('');
 $('#area').val('');
 $('#price').val('');
 $('#mop').val('');
-$('#status').val('');
 
 })
 
 frmData.on('submit',(e)=> {
    e.preventDefault();
    
-   db.collection('dbBookings').add({
+   db.collection('dbBookingF').add({
        fname:$('#fname').val(),
-       address:$('#address').val(),
+       bnum:$('#bnum').val(),
+       rnum:$('#rnum').val(),
        contact:$('#contact').val(),
+       email:$('#email').val(),
        date:$('#date').val(),
        time:$('#time').val(),
        service:$('#service').val(),
@@ -99,19 +108,19 @@ frmData.on('submit',(e)=> {
     })
 
     $('#fname').val('');
-    $('#address').val('');
+    $('#bnum').val('');
+    $('#rnum').val('');
     $('#contact').val('');
+    $('#email').val('');
     $('#date').val('');
     $('#time').val('');
     $('#service').val('');
     $('#area').val('');
     $('#price').val('');
     $('#mop').val('');
-    $('#status').val('');
-
 })
 
-db.collection('dbBookings').onSnapshot(snapshot=>{
+db.collection('dbBookingF').onSnapshot(snapshot=>{
     let changes=snapshot.docChanges();
     changes.forEach(change=>{
         if(change.type=="added"){

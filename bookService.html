@@ -44,9 +44,6 @@
           <li class="nav-item">
             <a class="nav-link" href="services.html">Services</a>
           </li>
-          <li class="nav-item active">
-            <a class="nav-link" href="bookService.html">Book Service</a>
-          </li>
           <li class="nav-item">
             <a class="nav-link" href="table.html">Bookings</a>
           </li>
@@ -79,15 +76,24 @@
               </div>
             </div>
             <div class="form-row">
-              <div class="col-lg-11">
-                <label class="pt-2 font-weight-bold">Address</label>
-                <input type="text" placeholder="Enter Address" class="form-control p-2" name="address" id="address" required>
+              <label class="pt-2 col-7 font-weight-bold">Address</label>
+              <div class="col-8">
+                <input type="text" class="form-control" name="bnum" id="bnum" placeholder="Building Number">
+              </div>
+              <div class="col-lg-3">
+                <input type="text" class="form-control" name="rnum" id="rnum" placeholder="Room Number">
               </div>
             </div>
             <div class="form-row">
               <div class="col-lg-11">
                 <label class="pt-2 font-weight-bold">Contact Number</label>
                 <input type="number" placeholder="Enter Contact Number" class="form-control p-2" name="contact" id="contact" required>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="col-lg-11">
+                <label class="pt-2 font-weight-bold">Email</label>
+                <input type="email" placeholder="Enter Email Address" class="form-control p-2" name="email" id="email" required>
               </div>
             </div>
 
@@ -113,7 +119,6 @@
                   <option value="Bathroom Cleaning">Bathroom Cleaning</option>
                   <option value="Living Room Cleaning">Living Room Cleaning</option>
                   <option value="Kitchen Cleaning">Kitchen Cleaning</option>
-                  <option value="Garden Cleaning">Garden Cleaning</option>
                   <option value="General Cleaning">General Cleaning<option>
                 </select>
               </div>
@@ -167,7 +172,7 @@
         
         <!-- Modal body -->
         <div class="modal-body">
-          <h5 class="modal-title">See your bookings at Bookings Table</h5>
+          <h5 class="modal-title">Expect an email from us in 1 to 2 days. Happy Cleaning!</h5>
         </div>
         
         <!-- Modal footer -->

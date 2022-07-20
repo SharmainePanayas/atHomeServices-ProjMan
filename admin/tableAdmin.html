@@ -41,6 +41,9 @@
                 <a class="nav-link" href="tableAdmin.html">Bookings</a>
               </li>
               <li class="nav-item">
+                <a class="nav-link" href="#">Analytics</a>
+              </li>
+              <li class="nav-item">
                 <a class="nav-link" href="contactAdmin.html">Contact</a>
               </li>
         </ul>
@@ -74,15 +77,24 @@
               </div>
             </div>
             <div class="form-row">
-              <div class="col-lg-11">
-                <label class="pt-2 font-weight-bold">Address</label>
-                <input type="text" placeholder="Enter Address" class="form-control p-2" name="address" id="address" readonly>
+              <label class="pt-2 col-7 font-weight-bold">Address</label>
+              <div class="col-8">
+                <input type="text" class="form-control" name="bnum" id="bnum" placeholder="Building Number" readonly>
+              </div>
+              <div class="col-lg-3">
+                <input type="text" class="form-control" name="rnum" id="rnum" placeholder="Room Number" readonly>
               </div>
             </div>
             <div class="form-row">
               <div class="col-lg-11">
                 <label class="pt-2 font-weight-bold">Contact Number</label>
                 <input type="number" placeholder="Enter Contact Number" class="form-control p-2" name="contact" id="contact" readonly>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="col-lg-11">
+                <label class="pt-2 font-weight-bold">Email</label>
+                <input type="email" placeholder="Enter Email Address" class="form-control p-2" name="email" id="email" readonly>
               </div>
             </div>
 
@@ -108,7 +120,6 @@
                   <option value="Bathroom Cleaning">Bathroom Cleaning</option>
                   <option value="Living Room Cleaning">Living Room Cleaning</option>
                   <option value="Kitchen Cleaning">Kitchen Cleaning</option>
-                  <option value="Garden Cleaning">Garden Cleaning</option>
                   <option value="General Cleaning">General Cleaning<option>
                 </select>
               </div>
@@ -193,16 +204,18 @@
       <table>
           <thead>
               <tr>
-                  <th>Full Name</th>
-                  <th>Address</th>
-                  <th>Contact Number</th>
-                  <th>Date</th>
-                  <th>Time</th> 
-                  <th>Service</th>
-                  <th>Area of Room</th>
-                  <th>Price</th>
-                  <th>Mode of Payment</th>
-                  <th>Status</th>
+                <th>Full Name</th>
+                <th>Building Number</th>
+                <th>Room Number</th>
+                <th>Contact Number</th>
+                <th>Email</th>
+                <th>Date</th>
+                <th>Time</th> 
+                <th>Service</th>
+                <th>Area of Room</th>
+                <th>Price</th>
+                <th>Mode of Payment</th>
+                <th>Status</th>
                   <th colspan="2">Actions</th>
                 </tr>
               </thead>
