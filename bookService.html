@@ -76,7 +76,11 @@
               </div>
             </div>
             <div class="form-row">
-              <label class="pt-2 col-7 font-weight-bold">Address</label>
+              <label class="pt-2 col-7 font-weight-bold">Complete Address</label>
+              <div class="col-lg-11">
+                <input type="text" class="form-control" name="cadd" id="cadd" placeholder="Complete Address">
+              </div>
+              <label class="pt-2 col-7 font-weight-bold">Condo Unit</label>
               <div class="col-8">
                 <input type="text" class="form-control" name="bnum" id="bnum" placeholder="Building Number">
               </div>
@@ -231,6 +235,25 @@ function totalPrice() {
 </script>
 
 <script>
+  var searchInput = 'cadd';
+   
+  $(document).ready(function () {
+   var autocomplete;
+   autocomplete = new google.maps.places.Autocomplete((document.getElementById(searchInput)), {
+    types: ['geocode'],
+    /*componentRestrictions: {
+     country: "India"
+    }*/
+   });
+    
+   google.maps.event.addListener(autocomplete, 'place_changed', function () {
+    var near_place = autocomplete.getPlace();
+   });
+  });
+  </script>
+
+
+<script>
   // Your web app's Firebase configuration
  
   // Your web app's Firebase configuration
@@ -253,6 +276,11 @@ function totalPrice() {
 </script>
   
       <script src="bookService.js"></script>
+
+        <!-- maps
+    ================================================== -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&key=AIzaSyBY5p5e5PtJuJLl_nRpjefL0S094jdhEP8&libraries=places"></script>
 
       <!-- Bootstrap core JavaScript
     ================================================== -->
