@@ -6,6 +6,7 @@ function addRec(doc){
 
     tblItems.append(`<tr id="${doc.id}">    
       <td>${doc.data().fname}</td>
+      <td>${doc.data().cadd}</td>
       <td>${doc.data().bnum}</td>
       <td>${doc.data().rnum}</td>
       <td>${doc.data().contact}</td>  
@@ -27,16 +28,17 @@ function addRec(doc){
         e.stopImmediatePropagation();
         var id=e.target.id;
 
-        db.collection('dbBookingF').doc(id).delete();
+        db.collection('dbUserBookings').doc(id).delete();
       })
 
       $('.edit').click((e)=>{
         e.stopImmediatePropagation();
         var id=e.target.id;
 
-        db.collection('dbBookingF').doc(id).get().then(doc=>{
+        db.collection('dbUserBookings').doc(id).get().then(doc=>{
 
             $('#fname').val(doc.data().fname);
+            $('#cadd').val(doc.data().cadd);
             $('#bnum').val(doc.data().bnum);
             $('#rnum').val(doc.data().rnum);
             $('#contact').val(doc.data().contact);
@@ -59,8 +61,9 @@ function addRec(doc){
 $('#update').on('click',()=>{
     var id = $('#document').val();
 
-    db.collection('dbBookingF').doc(id).set({
+    db.collection('dbUserBookings').doc(id).set({
         fname:$('#fname').val(),
+        cadd:$('#cadd').val(),
         bnum:$('#bnum').val(),
         rnum:$('#rnum').val(),
         contact:$('#contact').val(),
@@ -76,6 +79,7 @@ $('#update').on('click',()=>{
 }, {merge:true})
 
 $('#fname').val('');
+$('#cadd').val('');
 $('#bnum').val('');
 $('#rnum').val('');
 $('#contact').val('');
@@ -92,8 +96,9 @@ $('#mop').val('');
 frmData.on('submit',(e)=> {
    e.preventDefault();
    
-   db.collection('dbBookingF').add({
+   db.collection('dbUserBookings').add({
        fname:$('#fname').val(),
+       cadd:$('#cadd').val(),
        bnum:$('#bnum').val(),
        rnum:$('#rnum').val(),
        contact:$('#contact').val(),
@@ -108,6 +113,7 @@ frmData.on('submit',(e)=> {
     })
 
     $('#fname').val('');
+    $('#cadd').val('');
     $('#bnum').val('');
     $('#rnum').val('');
     $('#contact').val('');
@@ -120,7 +126,7 @@ frmData.on('submit',(e)=> {
     $('#mop').val('');
 })
 
-db.collection('dbBookingF').onSnapshot(snapshot=>{
+db.collection('dbUserBookings').onSnapshot(snapshot=>{
     let changes=snapshot.docChanges();
     changes.forEach(change=>{
         if(change.type=="added"){

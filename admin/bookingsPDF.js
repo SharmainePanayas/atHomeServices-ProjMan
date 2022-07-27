@@ -6,6 +6,7 @@ function addRec(doc){
 
     tblItems.append(`<tr id="${doc.id}">    
     <td>${doc.data().fname}</td>
+    <td>${doc.data().cadd}</td>
     <td>${doc.data().bnum}</td>
     <td>${doc.data().rnum}</td>
     <td>${doc.data().contact}</td>  
@@ -22,7 +23,7 @@ function addRec(doc){
 
 }
 
-db.collection('dbBookingF').onSnapshot(snapshot=>{
+db.collection('dbUserBookings').onSnapshot(snapshot=>{
     let changes=snapshot.docChanges();
     changes.forEach(change=>{
         if(change.type=="added"){
