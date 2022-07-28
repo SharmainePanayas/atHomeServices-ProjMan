@@ -37,15 +37,15 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarCollapse">
         <ul class="navbar-nav mr-auto">
-              <li class="nav-item active">
-                <a class="nav-link" href="tableAdmin.html">Bookings</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Analytics</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="contactAdmin.html">Contact</a>
-              </li>
+          <li class="nav-item">
+            <a class="nav-link" href="analytics.html">Analytics</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="tableAdmin.html">Bookings</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="contactAdmin.html">Contact</a>
+          </li>
         </ul>
         <button onclick="signOut()" class="btnSignOut my-1">Sign out</button>
       </div>
@@ -318,7 +318,7 @@ $(document).ready(function(){
 
     function signOut(){
  firebase.auth().signOut().then(() => {
-     alert("User Sign Out");
+     alert("Admin Sign Out");
 
      window.location.replace("adminLog.html");
 
