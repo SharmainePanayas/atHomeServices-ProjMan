@@ -1,0 +1,143 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="shortcut icon" type="/image/png" href="/images/Logo.png">
+    <title>Admin | Analytics</title>
+    
+<!-- Bootstrap core CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<!-- Custom styles for this template -->
+<link href="/style.css" rel="stylesheet">
+</head>
+<body>
+ <!-- Navigation Bar -->
+ <header>
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+      <a class="navbar-brand" href=#>At-Home Services</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+        aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link active" href="analytics.html">Analytics</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="tableAdmin.html">Bookings</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="contactAdmin.html">Contact</a>
+              </li>
+        </ul>
+        <button onclick="signOut()" class="btnSignOut my-1">Sign out</button>
+      </div>
+    </nav>
+  </header>
+    <!-- End Navigation Bar -->
+
+<!--Analytics-->
+<div id="columnchart" style="width: 900px; height: 500px; margin-top: 2%; margin-left: 10%;"></div>
+
+<div id="piechart" style="width: 900px; height: 500px; margin-top: 2%; margin-left: 10%;"></div>
+
+<div id="columncharts" style="width: 900px; height: 500px; margin-top: 2%; margin-left: 10%;"></div>
+        
+      </body>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['bar']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Month', 'General Cleaning', 'Living room cleaning', 'Bathroom Cleaning', 'Bedroom Cleaning', 'Kitchen Cleaning'],
+          ['January', 8, 3, 4, 4, 5],
+          ['February', 10, 4, 6, 5, 3],
+          ['March', 5, 2, 3, 3, 4],
+          ['April', 7, 2, 5, 2, 3],
+          ['May', 6, 4, 4, 2, 2],
+          ['June', 5, 3, 4, 3, 3]
+        ]);
+
+        var options = {
+          chart: {
+            title: 'Bookings from the month fo January to June',
+          }
+        };
+
+        var chart = new google.charts.Bar(document.getElementById('columnchart'));
+
+        chart.draw(data, google.charts.Bar.convertOptions(options));
+      }
+    </script>
+    
+  <!--Analytics2-->
+  <script type="text/javascript">
+    google.charts.load('current', {'packages':['corechart']});
+    google.charts.setOnLoadCallback(drawChart);
+
+    function drawChart() {
+
+      var data = google.visualization.arrayToDataTable([
+        ['Task', 'Hours per Day'],
+        ['General Cleaning',     9],
+        ['Living room Cleaning',      7],
+        ['Bathroom Cleaning',  5],
+        ['Bedroom Cleaning', 6],
+        ['Kitchen Cleaning',    3]
+      ]);
+
+      var options = {
+        title: 'Pending bookings'
+      };
+
+      var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+      chart.draw(data, options);
+    }
+  </script>
+
+<!-- Analytics 3-->
+<script type="text/javascript">
+    google.charts.load('current', {'packages':['bar']});
+    google.charts.setOnLoadCallback(drawChart);
+
+    function drawChart() {
+      var data = google.visualization.arrayToDataTable([
+        ['Axis Title', 'General Cleaning', 'Living room cleaning', 'Bathroom Cleaning', 'Bedroom Cleaning', 'Kitchen Cleaning'],
+        ['BldgA1', 1, 10, 4, 4, 5],
+        ['BldgB2', 4, 6, 6, 5, 3],
+        ['BldgC3', 5, 5, 3, 3, 4],
+        ['BldgD4', 2, 7, 5, 2, 3],
+        ['BldgE5', 5, 9, 4, 2, 2],
+        ['BldgF6', 2, 5, 4, 3, 3]
+      ]);
+
+      var options = {
+        chart: {
+          title: 'Building and Room Number of Tenants that booked a cleaning service',
+        }
+      };
+
+      var chart = new google.charts.Bar(document.getElementById('columncharts'));
+
+      chart.draw(data, google.charts.Bar.convertOptions(options));
+    }
+    
+  </script>
+
+  <script>
+    function signOut(){
+ firebase.auth().signOut().then(() => {
+     alert("User Sign Out");
+
+     window.location.replace("adminLog.html");
+
+   }).catch((error) => {
+     // An error happened.
+   });
+ }
+  </script>
+</html>
